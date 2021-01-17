@@ -42,3 +42,30 @@
     flex-direction: row;
     align-items: flex-end;
 }
+.pricesInfo{
+    width: 17vw;
+}
+.pricesInfo  p {
+    color: white;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.text{
+    width: 60vw;
+}
+
+.text  p {
+    color: white;
+    font-size: 12px;
+    line-height: 1.5;
+}
+.checkoutBtn{
+    width: 290px;
+    height: 48px;
+    left: 23px;
+    top: 651px;
+    background: #FAFAFA;
+    border-radius: 10px;
+    border: none;
+}

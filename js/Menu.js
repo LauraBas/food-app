@@ -1,14 +1,32 @@
 window.onload = function(){
-   
-    const data = ["public/images/menu/breakfast.jpg", "15.5€", "Desayuno de la Casa", "Huevos, pancakes y tocino"];
-    const info = ["public/images/menu/pasta.jpg", "17.5€", "Pasta de la Casa", "Pasta, pesto y tocino"];
-    const infoFood = ["public/images/menu/salad.jpg", "17.5€", "Salad de la Casa", "Tomato, pesto y tocino"];
-
     const menu = document.getElementById('menu');
+   
+    dataMenu = [
+        {
+            image:"public/images/menu/breakfast.jpg",
+            price:"15.5€",
+            title:"Desayuno de la Casa",
+            description:"Huevos, pancakes y tocino",
+            id: 1,
+        },
+        {
+            image:"public/images/menu/pasta.jpg",
+            price:"18.5€",
+            title:"Pasta de la Casa",
+            description:"Pasta, tomate y albhaca",
+            id: 2,
+        },
+        {
+            image:"public/images/menu/salad.jpg",
+            price:"12.5€",
+            title:"Salad de la Casa",
+            description:"Lechuga, tomate y cebolla",
+            id: 3,
+        },
     
-    createMenu(data);
-    createMenu(info);
-    createMenu(infoFood);
+    ]
+
+    dataMenu.forEach(data => { createMenu(data) });
     
     function createMenu(data){       
         const food = document.createElement('div');  
@@ -16,10 +34,10 @@ window.onload = function(){
         const description = document.createElement('div');
         description.className = "description";
         const counter = document.createElement('section');
-        setImage(data[0], food);
-        setPrice(data[1], description);
-        setTitle(data[2], description);
-        setProduct(data[3],food, description);
+        setImage(data.image, food);
+        setPrice(data.price, description);
+        setTitle(data.title, description);
+        setProduct(data.description,food, description);
         setCounter(food, counter);
         menu.appendChild(food);
     }
@@ -33,7 +51,7 @@ window.onload = function(){
     function setPrice(value, div){
         const price = document.createElement('p');
         price.className = "prices";
-        price.innerHTML = data[1];
+        price.innerHTML = value;
         div.appendChild(price);
     }
     
@@ -50,8 +68,7 @@ window.onload = function(){
         description.appendChild(product);
         div.appendChild(description);
     }
-   
-    
+     
     function setCounter(div, counter){
         counter.className = "counter";
         setAdd(counter);
@@ -73,6 +90,7 @@ window.onload = function(){
         count.innerHTML = 0;
         counter.appendChild(count);
     }
+    
     function setRest(counter){
         const rest = document.createElement('button');
         rest.className = "rest";

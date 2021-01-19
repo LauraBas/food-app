@@ -4,7 +4,7 @@ window.onload = function(){
     const menu = document.getElementById('menu'); 
     
     dataMenu.forEach(data => { createMenu(data) });
-
+    
     function createMenu(data){       
         const food = document.createElement('div');  
         food.className = 'food';  
@@ -15,7 +15,7 @@ window.onload = function(){
         setPrice(data.price, description);
         setTitle(data.title, description);
         setProduct(data.description,food, description);
-        setCounter(food, counter);
+        setCounter(food, counter, data.id);
         menu.appendChild(food);
     }
 
@@ -46,35 +46,54 @@ window.onload = function(){
         div.appendChild(description);
     }
      
-    function setCounter(div, counter){
+    function setCounter(div, counter, dataId){
         counter.className = "counter";
+        counter.id = "counter" + dataId;
         setAdd(counter);
         setAmount(counter);
         setRest(counter);
         div.appendChild(counter);
     }
+    
+    function setAmount(counter){
+        const count = document.createElement('p');
+        count.className = "quantity";
+        count.id = 'count';
+        count.innerHTML = 0;
+        counter.appendChild(count);
+    }
 
     function setAdd(counter){
         const add = document.createElement('button');
         add.className = "add";
+        add.onclick = function(){sum(counter.id)};
         add.innerHTML = "+";
         counter.appendChild(add);
-    }
-
-    function setAmount(counter){
-        const count = document.createElement('p');
-        count.className = "quantity";
-        count.innerHTML = 0;
-        counter.appendChild(count);
     }
     
     function setRest(counter){
         const rest = document.createElement('button');
         rest.className = "rest";
+        rest.onclick = function(){subst(counter.id)};
         rest.innerHTML = "-";
         counter.appendChild(rest);
     }
-                
+
+    function sum(counterId){   
+        let counter = document.getElementById(counterId);
+        let count = counter.getElementsByTagName("p")[0];
+        count.innerHTML = parseInt(count.innerHTML) + 1;
+    }
+
+    function subst(counterId){
+        let counter = document.getElementById(counterId);
+        let count = counter.getElementsByTagName("p")[0];
+        let amount =parseInt(count.innerHTML);
+        if(amount > 0){
+            count.innerHTML = amount - 1;
+        }
+    }
+               
 }
 
 

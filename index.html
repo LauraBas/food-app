@@ -6,38 +6,74 @@
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;700&amp;display=swap" rel="stylesheet ">
     <link rel="icon" href="public/images/favicon.jpeg">
     <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/style2.css">
     <title>Menu Restaurante</title>
 </head>
 <body>
-    <header>
-        <section>
-            <h1>Food For Home</h1>
-            <p class="subtitle">Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
-        </section>
-        <img class="logo" src="public/images/logo.png"/>
-    </header>
-    <section class="slider" id="slider"></section>       
-    <section class="menu" id="menu"></section>
-    <footer>
-        <button class="footericon">
-            <img class="icon" src="public/images/footer/chat.svg"/>
-        </button>
-        <button class="footericon">
-            <img class="icon" src="public/images/footer/user.svg"/>        
-        </button>
-        <button class="cart-button">
-            <a href="cart.html">
+    <div id="principal" style="display: block;">
+        <header>
+            <section>
+                <h1>Food For Home</h1>
+                <p class="subtitle">Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
+            </section>
+            <img class="logo" src="public/images/logo.png"/>
+        </header>
+        <section class="slider" id="slider"></section>       
+        <section class="menu" id="menu"></section>
+        <footer>
+            <button class="footericon">
+                <img class="icon" src="public/images/footer/chat.svg"/>
+            </button>
+            <button class="footericon">
+                <img class="icon" src="public/images/footer/user.svg"/>        
+            </button>
+            <button id="cart"class="cart-button">           
                 <img id="bag"class="bag-img"src="public/images/footer/bag.svg"/>
-            </a>
-        </button>
-        <button class="footericon">
-            <img class="icon" src="public/images/footer/heart.svg"/>       
-        </button>
-        <button class="footericon">
-            <img class="icon"src="public/images/footer/home.svg"/>        
-        </button>    
-    </footer>  
+            </button>
+            <button class="footericon">
+                <img class="icon" src="public/images/footer/heart.svg"/>       
+            </button>
+            <button class="footericon">
+                <img class="icon"src="public/images/footer/home.svg"/>        
+            </button>    
+        </footer>  
+    </div>
+    <div id="checkout" style="display: none;">
+        <header>
+            <div class="fila1">
+                <button id="return" class="return">                   
+                    <img src="public/images/arrow.png"/>
+                </button>
+            </div>
+            <div>
+                <h3>My Cart</h3>
+            </div>
+        </header>
+        <main>
+            <section class="order">
+            </section>
+        </main>
+        <footer class="info-price">
+            <section class="price">
+                <article class="text">
+                    <p>Subtotal</p>
+                    <p>Tasas</p>
+                    <p>Delivery</p>
+                    <p>Total</p>
+                </article>
+                <article class="pricesInfo">
+                    <p>0€</p>
+                    <p>0.0€</p>
+                    <p>FREE</p>
+                    <p>0€</p>
+                </article>
+
+            </section>
+            <button class="checkoutBtn">Enviar mi Pedido</button>
+        </footer>
+    </div>
     <script type="module" src="js/Categories.js" ></script>
     <script type="module" src="js/Menu.js" ></script>
+    <script  src="js/App.js" ></script>
 </body>
 </html>

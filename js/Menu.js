@@ -1,6 +1,6 @@
 import { dataMenu } from "./DataMenu.js"  ;
 
-window.onload = function(){
+window.addEventListener ('load', function(){
     const menu = document.getElementById('menu'); 
     
     dataMenu.forEach(data => { createMenu(data) });
@@ -93,8 +93,8 @@ window.onload = function(){
             count.innerHTML = amount - 1;
         }
     }
-               
-}
+    function checkout(){}        
+})
 
 
 

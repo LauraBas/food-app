@@ -6,8 +6,7 @@ cart.addEventListener('click', change);
 const buttonBack = document.getElementById('return');
 buttonBack.addEventListener('click', change);
 
-
-function cleanScreen(){
+function toggleMenuScreen(){
     const principal = document.getElementById('principal');
     principal.style.display = (principal.style.display === "block") ? "none" : "block" ;
 }
@@ -18,7 +17,7 @@ function changeScreen(){
 }
 
 function change(){
-    cleanScreen();
+    toggleMenuScreen();
     changeScreen();
 }
 

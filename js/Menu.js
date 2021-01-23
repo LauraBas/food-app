@@ -2,7 +2,8 @@ import { dataMenu } from "./DataMenu.js"  ;
 
 window.addEventListener ('load', function(){
     const menu = document.getElementById('menu'); 
-    
+    const productsInCart = [];
+
     dataMenu.forEach(data => { createMenu(data) });
     
     function createMenu(data){       
@@ -49,9 +50,9 @@ window.addEventListener ('load', function(){
     function setCounter(div, counter, dataId){
         counter.className = "counter";
         counter.id = "counter" + dataId;
-        setAdd(counter);
+        setAdd(counter, dataId);
         setAmount(counter);
-        setRest(counter);
+        setRest(counter, dataId);
         div.appendChild(counter);
     }
     
@@ -63,37 +64,55 @@ window.addEventListener ('load', function(){
         counter.appendChild(count);
     }
 
-    function setAdd(counter){
+    function setAdd(counter, dataId){
         const add = document.createElement('button');
         add.className = "add";
-        add.onclick = function(){sum(counter.id)};
+        add.onclick = function(){sum(counter.id, dataId)};
         add.innerHTML = "+";
         counter.appendChild(add);
     }
     
-    function setRest(counter){
+    function setRest(counter, dataId){
         const rest = document.createElement('button');
         rest.className = "rest";
-        rest.onclick = function(){subst(counter.id)};
+        rest.onclick = function(){subst(counter.id, dataId)};
         rest.innerHTML = "-";
         counter.appendChild(rest);
     }
 
-    function sum(counterId){   
+    function sum(counterId, id){   
         let counter = document.getElementById(counterId);
         let count = counter.getElementsByTagName("p")[0];
         count.innerHTML = parseInt(count.innerHTML) + 1;
+       addToCart(id)
     }
 
-    function subst(counterId){
+    function subst(counterId, id){
         let counter = document.getElementById(counterId);
         let count = counter.getElementsByTagName("p")[0];
         let amount =parseInt(count.innerHTML);
         if(amount > 0){
             count.innerHTML = amount - 1;
         }
+        removeFromCart(id)
     }
-    function checkout(){}        
+
+    function addToCart(id){
+        dataMenu.forEach(menu => { 
+            if (menu.id == id)
+            productsInCart.push(menu)            
+        });    
+        console.log(productsInCart);
+    }   
+    
+    function removeFromCart(id){          
+        for (let i = 0; i < dataMenu.length; i++){
+            if (dataMenu[i].id == id){
+                productsInCart.splice(i, 1);
+            }
+        }  
+        console.log(productsInCart);
+    }   
 })
 
 

@@ -4,6 +4,7 @@ const menuInCart = getProductsInCart();
 
  export function printOrder(){
     const order = document.getElementById('order')
+    order.innerHTML = '';
     menuInCart.forEach(menu => { createMenu(menu, order) });
     console.log(menuInCart);
    

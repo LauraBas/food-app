@@ -1,4 +1,4 @@
-'use strict';
+import { createMenu, getProductsInCart } from "./menuCard.js";
 
 const cart = document.getElementById('cart');
 cart.addEventListener('click', change);
@@ -11,14 +11,23 @@ function toggleMenuScreen(){
     principal.style.display = (principal.style.display === "block") ? "none" : "block" ;
 }
 
-function changeScreen(){
+function toggleCheckoutScreen(){
     const checkout = document.getElementById('checkout');
     checkout.style.display = (checkout.style.display === "block") ? "none" : "block";
+    if (checkout.style.display === "block"){ printOrder() };
 }
 
 function change(){
     toggleMenuScreen();
-    changeScreen();
+    toggleCheckoutScreen();
+}
+const menuInCart = getProductsInCart();
+
+function printOrder(){
+    const order = document.getElementById('order')
+    menuInCart.forEach(menu => { createMenu(menu, order) });
+    console.log(menuInCart);
+   
 }
 
   

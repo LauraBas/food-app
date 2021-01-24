@@ -1,4 +1,4 @@
-import { createMenu, getProductsInCart } from "./menuCard.js";
+import { printOrder } from "./Order.js";
 
 const cart = document.getElementById('cart');
 cart.addEventListener('click', change);
@@ -21,14 +21,7 @@ function change(){
     toggleMenuScreen();
     toggleCheckoutScreen();
 }
-const menuInCart = getProductsInCart();
 
-function printOrder(){
-    const order = document.getElementById('order')
-    menuInCart.forEach(menu => { createMenu(menu, order) });
-    console.log(menuInCart);
-   
-}
 
   
 

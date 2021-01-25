@@ -1,6 +1,6 @@
 import { dataMenu } from "./DataMenu.js"  ;
 
-export function createMenu(data, menu){       
+export function createMenu(data, div, page){       
     const food = document.createElement('div');  
     food.className = 'food';  
     const description = document.createElement('div');
@@ -10,10 +10,10 @@ export function createMenu(data, menu){
     setPrice(data.price, description);
     setTitle(data.title, description);
     setProduct(data.description,food, description);
-    setCounter(food, counter, data.id);
-    menu.appendChild(food);
+    setCounter(food, counter, data.id, page);
+    div.appendChild(food);
 }
-const productsInCart = [];
+const productsInCart = {};
 
 function setImage(img, div){
     const image = document.createElement('img');
@@ -42,20 +42,20 @@ function setProduct(valueProduct, div, description){
     div.appendChild(description);
 }
  
-function setCounter(div, counter, dataId){
+function setCounter(div, counter, dataId, page){
     counter.className = "counter";
-    counter.id = "counter" + dataId;
+    counter.id = "counter" + page + dataId;
     setAdd(counter, dataId);
-    setAmount(counter);
+    setAmount(counter, dataId);
     setRest(counter, dataId);
     div.appendChild(counter);
 }
 
-function setAmount(counter){
+function setAmount(counter, dataId){
     const count = document.createElement('p');
     count.className = "quantity";
     count.id = 'count';
-    count.innerHTML = 0;
+    count.innerHTML = productsInCart[dataId] || 0;
     counter.appendChild(count);
 }
 
@@ -78,34 +78,29 @@ function setRest(counter, dataId){
 function sum(counterId, id){   
     let counter = document.getElementById(counterId);
     let count = counter.getElementsByTagName("p")[0];
-    count.innerHTML = parseInt(count.innerHTML) + 1;
-   addToCart(id)
+    addToCart(id)
+    count.innerHTML = productsInCart[id];
 }
 
 function subst(counterId, id){
     let counter = document.getElementById(counterId);
     let count = counter.getElementsByTagName("p")[0];
-    let amount =parseInt(count.innerHTML);
-    if(amount > 0){
-        count.innerHTML = amount - 1;
-    }
     removeFromCart(id)
+    count.innerHTML = productsInCart[id];    
 }
 
 function addToCart(id){
-    dataMenu.forEach(menu => { 
-        if (menu.id == id)
-        productsInCart.push(menu)            
-    });    
+   if(!productsInCart[id]) {
+       productsInCart[id] = 0;
+   }
+   productsInCart[id]++
     console.log(productsInCart);
 }   
 
 function removeFromCart(id){          
-    for (let i = 0; i < dataMenu.length; i++){
-        if (dataMenu[i].id == id){
-            productsInCart.splice(i, 1);
-        }
-    }  
+    if(productsInCart[id] > 0) {
+        productsInCart[id]--
+    }
     console.log(productsInCart);
 }
 

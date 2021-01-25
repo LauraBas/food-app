@@ -8,7 +8,6 @@ import { createMenu } from "./menuCard.js";
 }
 window.addEventListener ('load', function(){
     printMenu();
-
 })
 
 

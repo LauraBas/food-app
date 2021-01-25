@@ -96,7 +96,6 @@ function addToCart(id){
    }
    productsInCart[id]++
    calculateTotal();
-    console.log(productsInCart);
 }   
 
 function removeFromCart(id){          
@@ -104,7 +103,6 @@ function removeFromCart(id){
         productsInCart[id]--
     }
     calculateTotal();
-    console.log(productsInCart);
 }
 
 function calculateTotal(){
@@ -123,8 +121,6 @@ function calculateTotal(){
     }
     let total = subtotal + taxes + delivery;
     updateTotals(subtotal, taxes, delivery, total);
-
-    console.log(subtotal);
 }
 export function getProductsInCart(){
     return productsInCart;

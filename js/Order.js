@@ -8,7 +8,5 @@ const menuInCart = getProductsInCart();
     const order = document.getElementById('order')
     order.innerHTML = '';
     dataMenu.forEach(menu => 
-        { if(menuInCart[menu.id] > 0) createMenu(menu, order, 'checkout') });
-    console.log(menuInCart);
-   
+        { if(menuInCart[menu.id] > 0) createMenu(menu, order, 'checkout') });   
 }

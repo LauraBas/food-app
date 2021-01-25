@@ -1,5 +1,6 @@
-import { createMenu, getProductsInCart } from "./menuCard.js";
+import { createMenu } from "./menuCard.js";
 import { dataMenu } from "./DataMenu.js"  ;
+import {  getProductsInCart } from "./orderCalculation.js";
 
 
 const menuInCart = getProductsInCart();

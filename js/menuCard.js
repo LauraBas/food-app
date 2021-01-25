@@ -1,5 +1,7 @@
 import { dataMenu } from "./DataMenu.js"  ;
 import { updateTotals } from "./Checkout.js";
+import { addToCart, removeFromCart, calculateTotal, getProductsInCart } from "./orderCalculation.js"; 
+
 
 export function createMenu(data, div, page){       
     const food = document.createElement('div');  
@@ -14,7 +16,7 @@ export function createMenu(data, div, page){
     setCounter(food, counter, data.id, page);
     div.appendChild(food);
 }
-const productsInCart = {};
+
 
 function setImage(img, div){
     const image = document.createElement('img');
@@ -56,7 +58,7 @@ function setAmount(counter, dataId){
     const count = document.createElement('p');
     count.className = "quantity";
     count.id = 'count';
-    count.innerHTML = productsInCart[dataId] || 0;
+    count.innerHTML = getProductsInCart()[dataId] || 0;
     counter.appendChild(count);
 }
 
@@ -80,48 +82,16 @@ function sum(counterId, id){
     let counter = document.getElementById(counterId);
     let count = counter.getElementsByTagName("p")[0];
     addToCart(id)
-    count.innerHTML = productsInCart[id];
+    count.innerHTML = getProductsInCart()[id];
+    let totals = calculateTotal();
+    updateTotals(...totals);
 }
 
 function subst(counterId, id){
     let counter = document.getElementById(counterId);
     let count = counter.getElementsByTagName("p")[0];
     removeFromCart(id)
-    count.innerHTML = productsInCart[id];    
-}
-
-function addToCart(id){
-   if(!productsInCart[id]) {
-       productsInCart[id] = 0;
-   }
-   productsInCart[id]++
-   calculateTotal();
-}   
-
-function removeFromCart(id){          
-    if(productsInCart[id] > 0) {
-        productsInCart[id]--
-    }
-    calculateTotal();
-}
-
-function calculateTotal(){
-    let subtotal = 0;
-    dataMenu.forEach(menu => { 
-        if(productsInCart[menu.id] > 0){
-            subtotal += menu.price * productsInCart[menu.id]
-        }        
-    });
-    let taxes = subtotal * 0.07;
-    let delivery = 0;
-    if (subtotal > 25){
-        delivery = 0;
-    } else {
-        delivery = 5;
-    }
-    let total = subtotal + taxes + delivery;
-    updateTotals(subtotal, taxes, delivery, total);
-}
-export function getProductsInCart(){
-    return productsInCart;
+    count.innerHTML = getProductsInCart()[id];  
+    let totals = calculateTotal();
+    updateTotals(...totals);      
 }

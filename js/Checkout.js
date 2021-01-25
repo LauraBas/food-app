@@ -51,3 +51,13 @@ ticket.appendChild(pricesInfo);
 checkout.appendChild(ticket);
 checkout.appendChild(checkoutBtn);
 
+export function updateTotals(subtotal, taxes, delivery, total){
+    valueSubTotal.innerHTML = subtotal.toFixed(2) + ' €' ;
+    valueTasas.innerHTML = taxes.toFixed(2) + '€';
+    if (delivery == 0){
+        valueDelivery.innerHTML = "FREE";
+    } else {
+        valueDelivery.innerHTML = delivery.toFixed(2) + '€';
+    }
+    valueTotal.innerHTML = total.toFixed(2) + '€';
+}
